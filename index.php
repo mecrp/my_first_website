@@ -30,10 +30,31 @@
       <button>регистрация</button>
       <button>логин</button>
     </div>
+    <?php
+      if (isset($_COOKIE['User'])) {
+        require_once('db.php');
+        $link = mysqli_connect($servername, $username, $password, $dbName);
+        $sql = 'SELECT * FROM posts';
+        $result = mysqli_query($link, $sql);
+        if (mysqli_num_rows($result) > 0) {
+          while ($post = mysqli_fetch_array($result)) {
+            echo "<a href='/posts.php?id=" . $post["id"] . "'>" . $post["id"] . " - " . $post["title"] . "</a>";
+          }
+        }
+      }
+
+    ?>
 
     <script>
       const buttons = document.getElementsByTagName("button");
       const picture = document.getElementsByTagName("img");
+      
+      buttons[1].onclick = function () {
+        window.location.href = "/registration.php";
+      }
+      buttons[2].onclick = function () {
+        window.location.href = "/login.php";
+      }
 
       buttons[0].onmouseover = function () {
         document.body.style.background = "purple";
