@@ -8,7 +8,7 @@
     echo $title . " - " . $main_text . "<br>";
     
     if (!$title || !$main_text) {
-      die('no data post');
+      echo 'no data post';
     }
     echo $servername . $username . $password . $dbName;
     $sql = "INSERT INTO posts (title, main_text) VALUES ('$title', '$main_text')";
