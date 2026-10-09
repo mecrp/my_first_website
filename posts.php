@@ -22,8 +22,8 @@
 
         require_once('db.php');
         $link = mysqli_connect($servername, $username, $password, $dbName);
-        $get_id = $_GET['id'];
-        if (isset($get_id)) {
+        if (isset($_GET['id'])) {
+          $get_id = $_GET['id'];
           $sql = "SELECT * FROM posts WHERE id=$get_id";
           $result = mysqli_query($link, $sql);
           $post = mysqli_fetch_array($result);
